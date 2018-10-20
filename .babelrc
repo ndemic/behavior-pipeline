@@ -1,0 +1,15 @@
+{
+  "presets": ["latest"],
+  "plugins": [
+    "transform-object-rest-spread",
+    [
+      "module-resolver",
+      {
+        "root": ".",
+        "alias": {
+          "^behavior-promise/(.+)": "./src/\\1"
+        }
+      }
+    ]
+  ]
+}
