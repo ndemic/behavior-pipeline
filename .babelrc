@@ -7,7 +7,7 @@
       {
         "root": ".",
         "alias": {
-          "^behavior-promise/(.+)": "./src/\\1"
+          "^behavior-pipeline/(.+)": "./src/\\1"
         }
       }
     ]
