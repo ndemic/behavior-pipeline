@@ -17,7 +17,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var defaults = { name: 'Selector', children: [], properties: {} };
+var defaults = { name: 'Selector', properties: {} };
 
 var Selector = exports.Selector = function (_Composite) {
     _inherits(Selector, _Composite);
@@ -41,8 +41,12 @@ var Selector = exports.Selector = function (_Composite) {
                 if (child) {
                     return child.execute(output, blackboard).then(function (o) {
                         return o;
-                    }).catch(function () {
-                        return execute(current, params);
+                    }).catch(function (error) {
+                        if (_this2.children[current]) {
+                            return execute(current, params);
+                        }
+
+                        throw error;
                     });
                 }
 
