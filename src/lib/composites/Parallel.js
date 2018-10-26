@@ -2,7 +2,7 @@ import {
     Composite
 } from 'behavior-pipeline/lib';
 
-const defaults = { name: 'Parallel', children: [], properties: {} };
+const defaults = { name: 'Parallel', properties: {} };
 
 export class Parallel extends Composite {
     constructor(params = defaults) {

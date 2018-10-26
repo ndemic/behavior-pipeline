@@ -76,14 +76,14 @@ describe('Selector', () => {
             ).resolves.toEqual('PromiseResolver: Third');
         });
 
-        it('resolves the original value if no nodes are successful', () => {
+        it('rejects with the last node error on failure', () => {
             return expect(
                 new Selector()
                     .add(new PromiseResolver({ name: 'First', properties: { resolve: false } }))
                     .add(new PromiseResolver({ name: 'Second', properties: { resolve: false } }))
                     .add(new PromiseResolver({ name: 'Third', properties: { resolve: false } }))
                     .execute('Nothing Happened')
-            ).resolves.toEqual('Nothing Happened');
+            ).rejects.toEqual(new Error('PromiseResolver: Third'));
         });
     });
 });

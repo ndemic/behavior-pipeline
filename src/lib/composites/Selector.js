@@ -2,7 +2,7 @@ import {
     Composite
 } from 'behavior-pipeline/lib';
 
-const defaults = { name: 'Selector', children: [], properties: {} };
+const defaults = { name: 'Selector', properties: {} };
 
 export class Selector extends Composite {
     constructor(params = defaults) {
@@ -16,8 +16,12 @@ export class Selector extends Composite {
             if (child) {
                 return child.execute(output, blackboard).then(o => {
                     return o;
-                }).catch(() => {
-                    return execute(current, params)
+                }).catch(error => {
+                    if (this.children[current]) {
+                        return execute(current, params)
+                    }
+
+                    throw error;
                 });
             }
 

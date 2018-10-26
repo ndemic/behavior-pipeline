@@ -2,7 +2,7 @@ import {
     Composite
 } from 'behavior-pipeline/lib';
 
-const defaults = { name: 'Sequence', children: [], properties: {} };
+const defaults = { name: 'Sequence', properties: {} };
 
 export class Sequence extends Composite {
     constructor(params = defaults) {
